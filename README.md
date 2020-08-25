@@ -2,11 +2,14 @@
 
 ## users テーブル
 
-| Column        | Type   | Options     |
-| ------------- | ------ | ----------- |
-| nickname      | string | null: false |
-| email         | string | null: false |
-| password      | string | null: false |
+| Column      | Type   | Options     |
+| ----------- | ------ | ----------- |
+| nickname    | string | null: false |
+| email       | string | null: false |
+| password    | string | null: false |
+| name        | string | null: false |
+| namereading | string | null: false |
+| birthday    | string | null: false |
 
 ### Association
 
@@ -14,13 +17,18 @@
 
 ## items テーブル
 
-| Column          | Type    | Options     |
-| --------------- | ------- | ----------- |
-| itemimage       | image   | null: false |
-| itemname        | string  | null: false |
-| itemdescription | text    | null: false |
-| itemdetails     | text    | null: felse |
-| itemprice       | integer | null: false |
+| Column      | Type    | Options     |
+| ----------- | ------- | ----------- |
+| image       | image   | null: false |
+| name        | string  | null: false |
+| description | text    | null: false |
+| category    | string  | null: false |
+| status      | string  | null: false |
+| burden      | string  | null: false |
+| area        | string  | null: false |
+| days        | string  | null: false |
+| price       | integer | null: false |
+| user_id     | integer | null: false |
 
 ### Association
 
@@ -32,11 +40,13 @@
 | Column       | Type    | Options     |
 | -------------| ------- | ----------- |
 | postalcode   | string  | null: false |
-| prefecture   |
+| prefecture   | integer | null: false |
 | city         | string  | null: false |
-| housenumber  | integer | null: false |
+| housenumber  | string  | null: false |
 | buildingname | string  | null: false |
-| phonenumber  | integer | null: false |
+| phonenumber  | string  | null: false |
+| user_id      | integer | null: false |
+| item_id      | integer | null: false |
 
 ## Association
 
