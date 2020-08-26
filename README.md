@@ -36,7 +36,6 @@
 ### Association
 
 - belongs_to :user
-- has_one :buyer
 - has_one :management
 
 ## buyers テーブル
@@ -49,7 +48,7 @@
 | housenumber   | string  | null: false             |
 | buildingname  | string  |                         |
 | phonenumber   | string  | null: false             |
-| management_id | string  | null: false foreign_key |
+| management_id | integer | null: false foreign_key |
 
 ## Association
 
