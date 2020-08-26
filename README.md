@@ -16,7 +16,7 @@
 ### Association
 
 - has_many :items
-- has_many :management
+- has_many :managements
 
 ## items テーブル
 
@@ -37,23 +37,25 @@
 
 - belongs_to :user
 - has_one :buyer
+- has_one :management
 
-## buyer テーブル
+## buyers テーブル
 
-| Column       | Type    | Options     |
-| -------------| ------- | ----------- |
-| postalcode   | string  | null: false |
-| prefecture   | integer | null: false |
-| city         | string  | null: false |
-| housenumber  | string  | null: false |
-| buildingname | string  |             |
-| phonenumber  | string  | null: false |
+| Column        | Type    | Options                 |
+| --------------| ------- | ----------------------- |
+| postalcode    | string  | null: false             |
+| prefecture    | integer | null: false             |
+| city          | string  | null: false             |
+| housenumber   | string  | null: false             |
+| buildingname  | string  |                         |
+| phonenumber   | string  | null: false             |
+| management_id | string  | null: false foreign_key |
 
 ## Association
 
 - belongs_to :management
 
-## management
+## managements テーブル
 
 | Column  | Type    | Options                       |
 | --------| ------- | ----------------------------- |
@@ -63,3 +65,5 @@
 ## Association
 
 - has_one :buyer
+- belongs_to :user
+- belongs_to :item
