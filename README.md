@@ -1,24 +1,68 @@
-# README
+# テーブル設計
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## users テーブル
 
-Things you may want to cover:
+| Column                   | Type   | Options     |
+| ------------------------ | ------ | ----------- |
+| nickname                 | string | null: false |
+| email                    | string | null: false |
+| password                 | string | null: false |
+| family_name              | string | null: false |
+| first_name               | string | null: false |
+| name_reading_family_name | string | null: false |
+| name_reading_first_name  | string | null: false |
+| birthday                 | date   | null: false |
 
-* Ruby version
+### Association
 
-* System dependencies
+- has_many :items
+- has_many :managements
 
-* Configuration
+## items テーブル
 
-* Database creation
+| Column      | Type    | Options                      |
+| ----------- | ------- | ---------------------------- |
+| image       | image   | null: false                  |
+| name        | string  | null: false                  |
+| description | text    | null: false                  |
+| price       | integer | null: false                  |
+| user_id     | integer | null: false foreign_key: true|
+| category_id | integer | null: false                  |
+| status_id   | integer | null: false                  |
+| burden_id   | integer | null: false                  |
+| area_id     | integer | null: false                  |
+| days_id     | integer | null: false                  |
 
-* Database initialization
+### Association
 
-* How to run the test suite
+- belongs_to :user
+- has_one :management
 
-* Services (job queues, cache servers, search engines, etc.)
+## buyers テーブル
 
-* Deployment instructions
+| Column        | Type    | Options                 |
+| --------------| ------- | ----------------------- |
+| postalcode    | string  | null: false             |
+| prefecture    | integer | null: false             |
+| city          | string  | null: false             |
+| housenumber   | string  | null: false             |
+| buildingname  | string  |                         |
+| phonenumber   | string  | null: false             |
+| management_id | integer | null: false foreign_key |
 
-* ...
+## Association
+
+- belongs_to :management
+
+## managements テーブル
+
+| Column  | Type    | Options                       |
+| --------| ------- | ----------------------------- |
+| user_id | integer | null: false foreign_key: true |
+| item_id | integer | null: false foreign_key: true |
+
+## Association
+
+- has_one :buyer
+- belongs_to :user
+- belongs_to :item
