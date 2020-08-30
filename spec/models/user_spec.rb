@@ -18,6 +18,10 @@ RSpec.describe User, type: :model do
         @user.password_confirmation = '000000'
         expect(@user).to be_valid
       end
+      it 'emailに@があれば登録できる' do
+        @user.email = 'rrr@gmail.com'
+        expect(@user).to be_valid
+      end
       it '苗字（全角）が全角文字だけが存在すれば登録できる' do
         @user.family_name = '井口'
         expect(@user).to be_valid
@@ -59,8 +63,9 @@ RSpec.describe User, type: :model do
         expect(another_user.errors.full_messages).to include('Email has already been taken')
       end
       it 'emailに@がなければ登録できない' do
-        @user.email = 'rrr@gmail.com'
-        expect(@user).to be_valid
+        @user.email = 'rrrgmail.com'
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Email is invalid")
       end
       it '生年月日が空では登録できない' do
         @user.birthday = nil
