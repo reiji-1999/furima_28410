@@ -58,6 +58,10 @@ RSpec.describe User, type: :model do
         another_user.valid?
         expect(another_user.errors.full_messages).to include('Email has already been taken')
       end
+      it 'emailに@がなければ登録できない' do
+        @user.email = 'rrr@gmail.com'
+        expect(@user).to be_valid
+      end
       it '生年月日が空では登録できない' do
         @user.birthday = nil
         @user.valid?
