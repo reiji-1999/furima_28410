@@ -7,7 +7,7 @@ class User < ApplicationRecord
   with_options presence: true do
     has_many :items
     has_many :managements
-    validates :birthday, presence: true
+    validates :birthday
     validates :nickname, length: { maximum: 40 }
     validates :password, format: { with: /\A[a-zA-Z0-9]+\z/, message: 'password Include both letters numbers.' }
     validates :family_name, format: { with: /\A[ぁ-んァ-ン一-龥]/, message: 'is invalid. Input full-width characters.' }
