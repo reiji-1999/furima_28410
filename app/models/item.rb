@@ -6,11 +6,14 @@ class Item < ApplicationRecord
   belongs_to_active_hash :area
   belongs_to_active_hash :day
 
-  validates :price, length: { minimum: 300, maximum: 9999999 }
+  validates :price, numericality: { greater_than_or_equal_to: 300, less_than_or_equal_to: 9999999}
   validates :name, :description, :category_id, :status_id, :burden_id, :area_id, :days_id, :price, :image, presence: true
-  with_options presence: true do
-    numericality: { other_than: 1 } 
-  end
+
+  validates :category_id, numericality: { other_than: 1 } 
+  validates :status_id, numericality: { other_than: 1 } 
+  validates :burden_id, numericality: { other_than: 1 } 
+  validates :area_id, numericality: { other_than: 1 } 
+  validates :days_id, numericality: { other_than: 1 } 
 
   belongs_to :user
   has_one :management
