@@ -9,11 +9,7 @@ class Item < ApplicationRecord
   validates :price, length: { minimum: 300, maximum: 9999999 }
   validates :name, :description, :category_id, :status_id, :burden_id, :area_id, :days_id, :price, :image, presence: true
   with_options presence: true do
-  validates :category_id, numericality: { other_than: 1 } 
-  validates :status_id, numericality: { other_than: 1 } 
-  validates :burden_id, numericality: { other_than: 1 } 
-  validates :area_id, numericality: { other_than: 1 } 
-  validates :days_id, numericality: { other_than: 1 } 
+    numericality: { other_than: 1 } 
   end
 
   belongs_to :user
