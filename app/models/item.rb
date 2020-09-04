@@ -4,7 +4,7 @@ class Item < ApplicationRecord
   belongs_to_active_hash :status
   belongs_to_active_hash :burden
   belongs_to_active_hash :area
-  belongs_to_active_hash :day
+  belongs_to_active_hash :days
 
   validates :price, numericality: { greater_than_or_equal_to: 300, less_than_or_equal_to: 9999999}
   validates :name, :description, :category_id, :status_id, :burden_id, :area_id, :days_id, :price, :image, presence: true
