@@ -34,6 +34,13 @@ ActiveRecord::Schema.define(version: 2020_08_31_081542) do
   end
 
   create_table "buyers", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "postalcode", null: false
+    t.integer "area_id", null: false
+    t.string "city", null: false
+    t.string "housenumber", null: false
+    t.string "buildingname"
+    t.string "phonenumber", null: false
+    t.integer "management_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
