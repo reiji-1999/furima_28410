@@ -1,22 +1,28 @@
 class BuyersController < ApplicationController
   before_action :authenticate_user!
-  before_action :pay_item, only:[:index, :create]
+  # before_action :pay_item, only:[:index, :create]
 
   def index
+    @item = Item.find(params[:item_id])
     redirect_to root_path if current_user.id == @item.user_id
     @buyermanagement = BuyerManagement.new
   end
 
   def create
-    @buyermanagement = BuyerManagement.new(buyer_params)
-    if @buyermanagement.valid?
-      pay_item
-      @buyermanagement.save
+    if params[:token] == nil
       redirect_to root_path
-    else
-      render 'index'
+    else 
+      @buyermanagement = BuyerManagement.new(buyer_params)
+      if @buyermanagement.valid?
+        pay_item
+        @buyermanagement.save
+        redirect_to root_path
+      else
+        render 'index'
+      end
     end
   end
+
 
     private
 
