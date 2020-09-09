@@ -1,6 +1,6 @@
 class BuyersController < ApplicationController
   before_action :authenticate_user!
-  before_action :pay_item, only:[:index, :buyer_params]
+  before_action :pay_item, only:[:index, :create]
 
   def index
     redirect_to root_path if current_user.id == @item.user_id
@@ -21,7 +21,8 @@ class BuyersController < ApplicationController
     private
 
   def buyer_params
-    params.permit(:postalcode, :area_id, :city, :housenumber, :buildingname, :phonenumber).merge(user_id: current_user.id, item_id: item.id)
+    @item = Item.find(params[:item_id])
+    params.permit(:postalcode, :area_id, :city, :housenumber, :buildingname, :phonenumber, :token).merge(user_id: current_user.id, item_id: @item.id)
   end
 
   def pay_item
