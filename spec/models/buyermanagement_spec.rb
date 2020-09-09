@@ -3,11 +3,11 @@ RSpec.describe BuyerManagement, type: :model do
   describe '購入機能' do
     before do
       user = FactoryBot.create(:user)
-      item = FactoryBot.build(:item, user_id: user.id)
+      item = FactoryBot.build(:item, user_id: seller.id)
       item.image = fixture_file_upload('/laptop-1478822_640.jpg', 'image/jpg')
       item.save
       sleep 3
-      @buyermanagement = FactoryBot.build(:buyer_management, user_id: user.id, item_id: item.id)
+      @buyermanagement = FactoryBot.build(:buyer_management, user_id: buyer.id, item_id: item.id)
     end
     context '購入ができるとき' do
       it 'すべての値が正しく入力されていれば保存できること' do
@@ -66,6 +66,11 @@ RSpec.describe BuyerManagement, type: :model do
         @buyermanagement.phonenumber = "090123456"
         @buyermanagement.valid?
         expect(@buyermanagement.errors.full_messages).to include("Phonenumber is too short (minimum is 10 characters)")
+      end
+      it 'tokenの情報がないと保存ができない' do
+        @buyermanagement.token = nil
+        @buyermanagement.valid?
+        expect(@buyermanagement.errors.full_messages).to include("Token can't be blank")
       end
     end
   end
